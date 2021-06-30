@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
+import ThotAILogo from '../logo/thotai'
 
 const navigation = [
     { name: 'Product', href: '/product' },
@@ -20,12 +21,8 @@ export default function PublicNavbar() {
                 <div className="flex items-center flex-1">
                   <div className="flex items-center justify-between w-full md:w-auto">
                     <a href="#">
-                      <span className="sr-only">Workflow</span>
-                      <img
-                        className="h-8 w-auto sm:h-10"
-                        src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                        alt=""
-                      />
+                      <span className="sr-only">ThotAI</span>
+                      <ThotAILogo className="h-10 w-auto sm:h-10 text-yellow-500" />
                     </a>
                     <div className="-mr-2 flex items-center md:hidden">
                       <Popover.Button className="bg-gray-800 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-700 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white">
@@ -43,17 +40,17 @@ export default function PublicNavbar() {
                   </div>
                 </div>
                 <div className="hidden md:flex space-x-4">
-                  <a
-                    href="#"
-                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"
-                  >
-                    Log in
+                    <a
+                        href="#"
+                        className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-bold rounded-md text-black bg-yellow-500"
+                    >
+                    Get started now
                   </a>
                   <a
                     href="#"
-                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"
+                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-bold rounded-md text-white bg-gray-600 hover:bg-gray-700"
                   >
-                    Try free
+                    Log in
                   </a>
                 </div>
               </nav>
@@ -73,17 +70,13 @@ export default function PublicNavbar() {
                   static
                   className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
                 >
-                  <div className="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
+                  <div className="rounded-lg shadow-md bg-dark-gray ring-1 ring-black ring-opacity-5 overflow-hidden">
                     <div className="px-5 pt-4 flex items-center justify-between">
                       <div>
-                        <img
-                          className="h-8 w-auto"
-                          src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                          alt=""
-                        />
+                        <ThotAILogo className="h-10 w-auto sm:h-10 text-yellow-500" />
                       </div>
                       <div className="-mr-2">
-                        <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                        <Popover.Button className="bg-black rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500">
                           <span className="sr-only">Close menu</span>
                           <XIcon className="h-6 w-6" aria-hidden="true" />
                         </Popover.Button>
@@ -94,7 +87,7 @@ export default function PublicNavbar() {
                         <a
                           key={item.name}
                           href={item.href}
-                          className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                          className="block px-3 py-2 rounded-md text-base font-medium text-gray-200 hover:bg-black"
                         >
                           {item.name}
                         </a>
@@ -102,7 +95,7 @@ export default function PublicNavbar() {
                     </div>
                     <a
                       href="#"
-                      className="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100"
+                      className="block w-full px-5 py-3 text-center font-medium text-yellow-600 bg-light-gray"
                     >
                       Try free
                     </a>

@@ -42,7 +42,7 @@ export default function SignUpForm(props) {
 
                 <div className="mt-6 relative">
                     <div className="absolute inset-0 flex items-center" aria-hidden="true">
-                    <div className="w-full border-t border-gray-600" />
+                    <div className="w-full border-t border-border-gray" />
                     </div>
                     <div className="relative flex justify-center text-sm">
                     <span className="px-2 bg-light-gray text-gray-500">Or</span>
@@ -62,7 +62,7 @@ export default function SignUpForm(props) {
                             autoComplete="name"
                             placeholder="Full name"
                             required
-                            className="block w-full shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm border-gray-600 rounded-md bg-light-gray"
+                            className="block w-full shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm border-border-gray rounded-md bg-light-gray"
                         />
                     </div>
 
@@ -77,7 +77,7 @@ export default function SignUpForm(props) {
                             autoComplete="email"
                             placeholder="Email address"
                             required
-                            className="block w-full shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm border-gray-600 rounded-md bg-light-gray"
+                            className="block w-full shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm border-border-gray rounded-md bg-light-gray"
                         />
                     </div>
 
@@ -92,14 +92,14 @@ export default function SignUpForm(props) {
                             placeholder="Password"
                             autoComplete="current-password"
                             required
-                            className="block w-full shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm border-gray-600 rounded-md bg-light-gray"
+                            className="block w-full shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm border-border-gray rounded-md bg-light-gray"
                         />
                     </div>
 
                     <div>
                         <button
                             type="submit"
-                            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yellow-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+                            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-bold text-black bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
                         >
                         Create your account
                         </button>
@@ -107,7 +107,7 @@ export default function SignUpForm(props) {
                     </form>
                 </div>
             </div>
-            <div className="px-4 py-6 border-t-2 border-gray-700 sm:px-10 bg-light-gray">
+            <div className="px-4 py-6 border-t-2 border-border-gray sm:px-10 bg-light-gray">
                 <p className="text-xs leading-5 text-gray-300">
                     By signing up, you agree to our{' '}
                     <a href="#" className="font-medium text-gray-200 hover:underline">
