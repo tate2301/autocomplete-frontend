@@ -4,9 +4,8 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import ThotAILogo from '../logo/thotai'
 
 const navigation = [
-    { name: 'Product', href: '/product' },
-    { name: 'Pricing', href: '/plans' },
-    { name: 'Resources', href: '/resources' },
+    { name: 'Product', href: '#product' },
+    { name: 'Pricing', href: '#pricing' },
 ]
   
 export default function PublicNavbar() {

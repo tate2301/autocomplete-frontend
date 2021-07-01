@@ -1,5 +1,21 @@
+@import url("./prism.css");
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: #121212;
     color: #ffffff;
 }
+
+.scrollbars::-webkit-scrollbar {
+    width: 4px;
+}
+.scrollbars::-webkit-scrollbar-track {
+    background: #121212; 
+}
+.scrollbars::-webkit-scrollbar-thumb {
+    background: #ffffff; 
+    border-radius:10px;
+}
+.scrollbars::-webkit-scrollbar-thumb:hover {
+    background: #1f1f1f; 
+} 
