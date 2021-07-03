@@ -8,20 +8,18 @@ const data = [
         id: 1,
         text: "A blue button with red text on a white background with witdh 40px and height 20rem",
         code: {
-            "C++": `
-#include <stdio.h>
-
+            "C++": 
+`#include <stdio.h>
 using namespace std;
 
 int main() {
     cout << "Hello World" << endl;
     return 0;
 }
-            `,
-            "JavaScript": `
-                function HelloWorld() {
-                    return 0;
-                }
+`,
+            "JavaScript": `function HelloWorld() {
+                return 0;
+}
             ` 
         },
     },
