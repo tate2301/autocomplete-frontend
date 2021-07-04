@@ -1,4 +1,4 @@
-import CustomerNavbar from "../../../components/navbar/CustomerNavbar";
+import CustomerNavbar from "../../components/navbar/CustomerNavbar";
 
 export default function NewWorkspace() {
     return (

@@ -1,17 +1,31 @@
 import { DownloadIcon, TrashIcon } from "@heroicons/react/outline";
-import { PlusIcon } from "@heroicons/react/solid";
+import { ClipboardIcon, PlusIcon, RefreshIcon } from "@heroicons/react/solid";
 import CustomerNavbar from '../../../components/navbar/CustomerNavbar'
 import Button from "../../../components/Button";
 import SnippetCard from "../../../components/SnippetCard";
-
-const snippets = [
-  {
-    name: "React component for ABC",
-    dateCreated: new Date()
-  }
-]
+import { useState } from "react";
 
 export default function Example() {
+  const [currentlyActiveId, setCurrentlyActiveId] = useState(null)
+  const [name, setName] = useState(null)
+  const [question, setQuestion] = useState(null)
+  const [generatedCode, setGeneratedCode] = useState(null)
+
+  const [snippets, setSnippets] = useState([
+    {
+      name: "React component for ABC",
+      dateCreated: new Date()
+    }
+  ])
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+
+    const name = e.target.name.value;
+    const question = e.target.question.value;
+    const theNewArray = [...snippets, { name, dateCreated: new Date() }]
+    setSnippets(theNewArray.reverse())
+  }
 
   return (
       <>
@@ -43,7 +57,7 @@ export default function Example() {
               <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last">
                 {/* Start main area*/}
                 <div className="py-6 px-4 sm:px-6 lg:px-8 space-y-4">
-                  <div className="h-full border-2 border-border-gray bg-light-gray rounded-lg p-4 space-y-4">
+                  <form onSubmit={onSubmit} className="h-full border-2 border-border-gray bg-light-gray rounded-lg p-4 space-y-4">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-100">
                         What's the name of this snippet
@@ -75,16 +89,26 @@ export default function Example() {
                     </div>
 
                     <div className="w-full">
-                        <div className="mt-4 flex justify-end">
-                            <Button className="rounded-md px-4 py-2 bg-yellow-500 text-black font-bold text-sm">
+                        <div className="mt-4 flex justify-end space-x-4">
+                            <Button type="submit" className="rounded-md px-4 py-2 bg-yellow-500 text-black font-bold text-sm">
                                 Generate
                             </Button>
                         </div>
                     </div>
-                  </div>
+                  </form>
 
-                  <div className="h-full border-2 border-border-gray border-dashed rounded-lg p-2">
-                    <p className="text-sm font-bold my-2">Generated Code</p>
+                  <div className="h-full border-2 border-border-gray bg-light-gray rounded-lg p-2">
+                    <div className="flex justify-between">
+                      <p className="text-sm font-medium my-2">Generated Code</p>
+                      <div className="justify-end flex items-center space-x-2">
+                        <div className="bg-black rounded-full p-1">
+                          <ClipboardIcon className="h-5 w-5 text-gray-200" />
+                        </div>
+                        <div className="bg-black rounded-full p-1">
+                          <RefreshIcon className="h-5 w-5 text-gray-200" />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 {/* End main area */}
@@ -103,7 +127,7 @@ export default function Example() {
                       </div>
                     </div>
                   
-                    <div className="mt-4">
+                    <div className="flex flex-col mt-4 space-y-2">
                       {
                         snippets.map((snippet, key) => <SnippetCard key={key} {...snippet} docId="doc-id" />)
                       }

@@ -17,7 +17,7 @@ export default function CustomerNavbar() {
                 <div className="hidden lg:block lg:ml-6">
                   <div className="flex space-x-4">
                     {/* Current: "bg-dark-gray text-white", Default: "text-gray-300 hover:text-white" */}
-                    <a href="/app" className="bg-dark-gray text-white px-3 py-2 rounded-md text-sm font-medium">
+                    <a href="/app" className="text-white px-3 py-2 rounded-md text-sm font-medium">
                       Workspaces
                     </a>
                     <a
