@@ -15,6 +15,13 @@ export default function LandingPage() {
                 <title>The online code generator - ThotAI</title>
             </Head>
             <LandingPageHero />
+            <div className="mt-12 -mb-10 sm:-mb-24 lg:-mb-80">
+                <img
+                  className="rounded-lg shadow-xl ring-1 ring-black ring-opacity-5"
+                  src="/thot-discussion.svg"
+                  alt=""
+                />
+            </div>
             <LanguagesFeature />
             <LandingPageFeatureSection />
             <LandingPageCTA />

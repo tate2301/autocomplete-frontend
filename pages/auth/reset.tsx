@@ -1,5 +1,4 @@
 import ThotAILogo from '../../components/logo/thotai'
-import { LockClosedIcon } from '@heroicons/react/solid'
 import { useAuth } from '../../lib/auth'
 import Button from '../../components/Button'
 
@@ -52,9 +51,6 @@ export default function Example() {
               type="submit"
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
             >
-              <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                <LockClosedIcon className="h-5 w-5 text-yellow-500 group-hover:text-yellow-400" aria-hidden="true" />
-              </span>
               Send reset instructions
             </Button>
           </div>

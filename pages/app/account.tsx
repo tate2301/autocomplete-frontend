@@ -10,7 +10,7 @@ export default function Example() {
       <header className="bg-black">
         <CustomerNavbar />
       </header>
-      <main className="max-w-5xl mx-auto pt-10 pb-12 px-4 lg:pb-16">
+      <main className="max-w-5xl px-2 mx-auto pt-10 pb-12 px-4 lg:pb-16">
         <form>
           <div className="space-y-6">
             <div>
