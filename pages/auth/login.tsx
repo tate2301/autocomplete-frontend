@@ -54,7 +54,7 @@ export default function Example() {
 
           <div className="flex items-center justify-end">
             <div className="text-sm">
-              <a href="#" className="font-medium text-yellow-600 hover:text-yellow-500">
+              <a href="reset" className="font-medium text-yellow-600 hover:text-yellow-500">
                 Forgot your password?
               </a>
             </div>
@@ -72,6 +72,14 @@ export default function Example() {
               Sign in
             </Button>
           </div>
+          <div>
+            <a
+              href="signup"
+              className="group relative w-full flex justify-center py-2 px-4 border border-border-gray text-sm font-medium rounded-md text-white bg-dark-grayfocus:outline-none"
+            >
+              Create an account
+            </a>
+          </div>
         </form>
         <div className="mt-6">
             <div className="relative">
@@ -79,7 +87,7 @@ export default function Example() {
                 <div className="w-full border-t border-border-gray" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 text-gray-300">Or continue with</span>
+                <span className="px-2 text-gray-300 bg-black">Or continue with</span>
               </div>
             </div>
 

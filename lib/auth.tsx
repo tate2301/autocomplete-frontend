@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { useState } from "react"
 import { auth, authBase } from "./__firebase__"
 
@@ -9,6 +10,10 @@ export const useAuth = () => {
         message: string 
     }>(null)
     const [authLoading, setAuthLoading] = useState(null)
+
+    useEffect(() => {
+        console.log({authSuccess, authError})
+    }, [authError, authSuccess])
 
     const signInWithEmail = (e) => {
         e.preventDefault()
@@ -23,13 +28,11 @@ export const useAuth = () => {
                 setAuthSuccess(true)
                 setAuthLoading(false)
                 setAuthLoading(null)
-                console.log({value})
             })
             .catch(err => {
                 setAuthSuccess(false)
                 setAuthError(err)
                 setAuthLoading(false)
-                console.log({err})
             })
     }
 
@@ -52,5 +55,20 @@ export const useAuth = () => {
             })
     }
 
-    return { signInWithEmail, signInWithGoogle, authSuccess, authLoading, authError }
+    const resetPassword = (e) => {
+        e.preventDefault()
+        const email = e.target.email.value
+        auth.sendPasswordResetEmail(email)
+        .then((result) => {
+            setAuthError(null)
+            setAuthLoading(false)
+            setAuthSuccess(true)
+        }).catch((error) => {
+            setAuthError(error)
+            setAuthLoading(false)
+            setAuthSuccess(false)
+        })
+    }
+
+    return { signInWithEmail, signInWithGoogle, resetPassword, authSuccess, authLoading, authError }
 }
