@@ -1,5 +1,7 @@
+import axios from "axios"
 import { FormEvent, useEffect } from "react"
 import { useState } from "react"
+import { generator_api_url } from "./constants"
 
 export type SupportedLanguages = "js" | "cpp" | "py"
 
@@ -16,13 +18,10 @@ export type APIGenerateCodeQuery = {
     code_type_param: string;
 }
 
-export const generator_api_url = process.env.NEXT_APP_API_URL
-const api_key = process.env.NEXT_APP_API_KEY
 
-export const useGeneratorApi = () => {
-    const [query, setQuery] = useState<string>(null)
-    const [lang, setLang] = useState<SupportedLanguages>("js")
-    const [pythonType, setPythonType] = useState<PythonType>("function")
+
+export const useGeneratorApi = (api_key) => {
+
     const [loading, setLoading] = useState<boolean>(false)
     const [error, setError] = useState(null)
     const [data, setData] = useState(null)
@@ -33,56 +32,36 @@ export const useGeneratorApi = () => {
         setLoading(true)
     }
 
-    const submitQuery = () => {
+    const submitQuery = ({lang, query, pythonType}) => {
         init()
+
         const api_query: APIGenerateCodeQuery = {
             language: lang,
             prompt: query,
             code_type_param: pythonType,
             api_key
         }
-        fetch(generator_api_url, {
-            body: JSON.stringify(api_query)
-        }).then(value => {
+
+
+        axios.post(generator_api_url, {...api_query})
+        .then(res => {
             setLoading(false)
-            setData(value.json())
-        }, error => {
+            setData(res.data)
+        }).catch(error => {
             setLoading(false)
             setError(error)
         })
     }
 
-    // Takes e as a form input event
-    const updateQuery = (e) => {
-        const value = e.target.value
-        setQuery(value)
-    }
-
-    const updateLanguage = (lang: SupportedLanguages) => {
-        if(!lang) {
-            return
-        }
-        setLang(lang)
-    }
-
-    const updatePythonType = (pyType: PythonType) => {
-        if(lang === "py") {
-            setPythonType(pyType)
-        }
-    }
-
     useEffect(() => {
-        console.log({error, data})
+        console.log({error, data, api_key, generator_api_url})
     }, [data, error])
 
     return {
         error,
         data,
         loading,
-        updatePythonType,
-        updateLanguage,
         submitQuery,
-        updateQuery
     }
 
 }

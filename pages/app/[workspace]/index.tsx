@@ -1,11 +1,11 @@
 import { DownloadIcon, TrashIcon } from "@heroicons/react/outline";
 import { ClipboardIcon, PlusIcon, RefreshIcon } from "@heroicons/react/solid";
 import CustomerNavbar from '../../../components/navbar/CustomerNavbar'
-import Button from "../../../components/Button";
 import SnippetCard from "../../../components/SnippetCard";
 import { useState } from "react";
+import GenerateCodeForm from "../../../components/forms/GenerateCodeForm";
 
-export default function Example() {
+export default function App({api_key}) {
   const [currentlyActiveId, setCurrentlyActiveId] = useState(null)
 
   const [snippets, setSnippets] = useState([
@@ -14,15 +14,6 @@ export default function Example() {
       dateCreated: new Date()
     }
   ])
-
-  const onSubmit = (e) => {
-    e.preventDefault()
-
-    const name = e.target.name.value;
-    const prompt = e.target.question.value;
-    const theNewArray = [...snippets, { name, dateCreated: new Date() }]
-    setSnippets(theNewArray.reverse())
-  }
 
   return (
       <>
@@ -54,46 +45,7 @@ export default function Example() {
               <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last">
                 {/* Start main area*/}
                 <div className="py-6 px-4 sm:px-6 lg:px-8 space-y-4">
-                  <form onSubmit={onSubmit} className="h-full border-2 border-border-gray bg-light-gray rounded-lg p-4 space-y-4">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-100">
-                        What's the name of this snippet
-                      </label>
-                      <div className="mt-1">
-                        <input
-                          type="text"
-                          name="name"
-                          id="name"
-                          className="shadow-sm focus:ring-border-gray focus:border-border-gray block w-full sm:text-sm border-border-gray bg-dark-gray rounded-md"
-                          placeholder="What's the name of this snippet"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <label htmlFor="question" className="block text-sm font-medium text-gray-100">
-                        Explain what you would like to achieve
-                      </label>
-                      <div className="mt-1">
-                        <textarea
-                          name="question"
-                          id="question"
-                          required
-                          maxLength={400}
-                          className="shadow-sm focus:ring-border-gray focus:border-border-gray block w-full sm:text-sm border-border-gray bg-dark-gray rounded-md"
-                          placeholder="e.g. "
-                        />
-                      </div>
-                    </div>
-
-                    <div className="w-full">
-                        <div className="mt-4 flex justify-end space-x-4">
-                            <Button type="submit" className="rounded-md px-4 py-2 bg-yellow-500 text-black font-bold text-sm">
-                                Generate
-                            </Button>
-                        </div>
-                    </div>
-                  </form>
-
+                  <GenerateCodeForm api_key={api_key} />
                   <div className="h-full border-2 border-border-gray bg-light-gray rounded-lg p-2">
                     <div className="flex justify-between">
                       <p className="text-sm font-medium my-2">Generated Code</p>
@@ -123,7 +75,7 @@ export default function Example() {
                         </button>
                       </div>
                     </div>
-                  
+                    
                     <div className="flex flex-col mt-4 space-y-2">
                       {
                         snippets.map((snippet, key) => <SnippetCard key={key} {...snippet} docId="doc-id" />)
@@ -139,4 +91,12 @@ export default function Example() {
     
       </>
     )
+}
+
+export const getServerSideProps = async (ctx) => {
+  return {
+    props: {
+      api_key: process.env.THOT_KEY
+    }
+  }
 }
