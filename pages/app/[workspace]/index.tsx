@@ -7,9 +7,6 @@ import { useState } from "react";
 
 export default function Example() {
   const [currentlyActiveId, setCurrentlyActiveId] = useState(null)
-  const [name, setName] = useState(null)
-  const [question, setQuestion] = useState(null)
-  const [generatedCode, setGeneratedCode] = useState(null)
 
   const [snippets, setSnippets] = useState([
     {
@@ -22,7 +19,7 @@ export default function Example() {
     e.preventDefault()
 
     const name = e.target.name.value;
-    const question = e.target.question.value;
+    const prompt = e.target.question.value;
     const theNewArray = [...snippets, { name, dateCreated: new Date() }]
     setSnippets(theNewArray.reverse())
   }

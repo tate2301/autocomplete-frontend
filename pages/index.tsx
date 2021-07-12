@@ -15,7 +15,6 @@ export default function LandingPage() {
                 <title>The online code generator - ThotAI</title>
             </Head>
             <LandingPageHero />
-
             <LanguagesFeature />
             <LandingPageFeatureSection />
             <LandingPageCTA />
