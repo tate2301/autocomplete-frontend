@@ -1,6 +1,11 @@
 import { useEffect, useReducer, useRef } from "react";
 import { firestore } from "./__firebase__";
 
+
+export const useThisWorkspace = id => {
+    return useQuery(id && firestore.collection("workspaces").doc(id));
+}
+
 export const createWorkspace = async ({
     uid, name
 }) => {
