@@ -1,7 +1,7 @@
 import axios from "axios"
 import { FormEvent, useEffect } from "react"
 import { useState } from "react"
-import { generator_api_url } from "./constants"
+import { base_url, generator_api_url } from "./constants"
 
 export type SupportedLanguages = "js" | "cpp" | "py"
 
@@ -43,7 +43,7 @@ export const useGeneratorApi = (api_key) => {
         }
 
 
-        axios.post(generator_api_url, {...api_query})
+        axios.post(`${base_url}/api/coreweave`, {data: JSON.stringify(api_query)})
         .then(res => {
             setLoading(false)
             setData(res.data)
