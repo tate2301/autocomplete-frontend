@@ -12,10 +12,6 @@ export const useAuth = () => {
     }>(null)
     const [authLoading, setAuthLoading] = useState(null)
 
-    useEffect(() => {
-        console.log({authSuccess, authError})
-    }, [authError, authSuccess])
-
     const signInWithEmail = (e) => {
         e.preventDefault()
         const email = e.target.email.value
