@@ -68,7 +68,7 @@ const NoWorkspacesPresent = () => {
   const close = () => setOpen(false)
 
   return(
-    <div className="text-center col-span-1">
+    <div className="text-center col-span-1 lg:col-span-2 xl:col-span-3">
       <svg
         className="mx-auto h-12 w-12 text-gray-100"
         fill="none"
