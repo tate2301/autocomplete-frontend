@@ -2,10 +2,14 @@ import { DownloadIcon, TrashIcon } from "@heroicons/react/outline";
 import CustomerNavbar from '../../../components/navbar/CustomerNavbar'
 import GenerateCodeForm from "../../../components/forms/GenerateCodeForm";
 import { verifyAuthenticatedClient } from "../../../lib/constants";
+import Head from "next/head";
 
 export default function App({api_key}) {
   return (
       <>
+        <Head>
+          <title></title>
+        </Head>
         <header className="bg-black">
           <CustomerNavbar />
         </header>

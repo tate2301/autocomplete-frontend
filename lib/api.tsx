@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
-export const base_url = process.env.NODE_ENV === "production" ? "https://thot-ai-front-end-eight.vercel.app" : "http://localhost:3000"
+export const base_url = process.env.NODE_ENV === "production" ? "https://thot.ai" : "http://localhost:3000"
 
 export type SupportedLanguages = "js" | "cpp" | "py"
 
