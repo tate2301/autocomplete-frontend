@@ -2,8 +2,14 @@ import { Disclosure } from '@headlessui/react'
 import { LogoutIcon } from '@heroicons/react/solid'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import ThotAILogo from '../logo/thotai'
+import { AuthContext, useAuth } from '../../lib/auth'
+import { useContext } from 'react'
 
 export default function CustomerNavbar() {
+  const { logout } = useAuth()
+  const user = useContext(AuthContext)
+
+  console.log({user})
   return (
     <Disclosure as="nav" className="bg-black border-b border-border-gray">
       {({ open }) => (
@@ -44,12 +50,12 @@ export default function CustomerNavbar() {
                 <div className="flex items-center">
                   <img
                     className="h-8 w-8 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    src={user?.photoURL}
                     alt=""
                   />
                   <button className="flex-shrink-0 ml-3 bg-light-gray p-1 rounded-full text-gray-400 hover:text-white">
                     <span className="sr-only">View notifications</span>
-                    <LogoutIcon className="h-6 w-6" aria-hidden="true" />
+                    <LogoutIcon onClick={logout} className="h-6 w-6" aria-hidden="true" />
                   </button>
                 </div>
               </div>
@@ -74,17 +80,17 @@ export default function CustomerNavbar() {
                 <div className="flex-shrink-0">
                   <img
                     className="h-10 w-10 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    src={user?.photoURL}
                     alt=""
                   />
                 </div>
                 <div className="ml-3">
-                  <div className="text-base font-medium text-white">Tom Cook</div>
-                  <div className="text-sm font-medium text-gray-400">tom@example.com</div>
+                  <div className="text-base font-medium text-white">{user?.displayName}</div>
+                  <div className="text-sm font-medium text-gray-400">{user?.email}</div>
                 </div>
                 <button className="ml-auto flex-shrink-0 bg-light-gray p-1 rounded-full text-gray-400 hover:text-white">
                   <span className="sr-only">View notifications</span>
-                  <LogoutIcon className="h-6 w-6" aria-hidden="true" />
+                  <LogoutIcon onClick={logout} className="h-6 w-6" aria-hidden="true" />
                 </button>
               </div>
             </div>

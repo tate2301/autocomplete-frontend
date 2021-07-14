@@ -5,13 +5,39 @@ const cors_api_base_url = "http://sentiment-cors.tenant-lorenzschmidt.knative.ch
 export const generator_api_url = "https://sentiment-predictor-default.tenant-lorenzschmidt.knative.chi.coreweave.com/v1/models/sentiment:predict"
 export const generator_api_url_cors = `${cors_api_base_url}/v1/models/sentiment:predict`
 
-export const base_url = process.env.NODE_ENV === "production" ? "https://app.thot.ai" : "http://localhost:3000"
+export const base_url = process.env.NODE_ENV === "production" ? "https://thot-ai-front-end-eight.vercel.app" : "http://localhost:3000"
 
 export const onlyQueryProps = (ctx) => ({
     props: {
         query: ctx.query
     }
 })
+
+export const blankServerProps = {
+    props: {
+
+    }
+}
+
+export const redirectToLogin = {
+    redirect: {
+      permanent: false,
+      destination: "/auth/login",
+    },
+    props: {
+
+    },
+};
+
+export const redirectToDashboard = {
+    redirect: {
+      permanent: false,
+      destination: "/app",
+    },
+    props: {
+
+    },
+};
 
 export const verifyAuthenticatedAsAdmin = async (ctx) => {
     try {
@@ -25,7 +51,18 @@ export const verifyAuthenticatedAsAdmin = async (ctx) => {
         } else {
             return blankServerProps
         }
-      } catch (err) {
-        return onlyQueryProps(ctx)
-      }
-  }
+    } catch (err) {
+        return redirectToLogin
+    }
+}
+
+export const verifyAuthenticatedClient = async (ctx) => {
+    try {
+        const cookies = nookies.get(ctx);
+        await firebaseAdmin.auth().verifyIdToken(cookies.token);
+  
+        return blankServerProps
+    } catch (err) {
+        return redirectToLogin
+    }
+}

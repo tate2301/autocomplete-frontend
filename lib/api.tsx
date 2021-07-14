@@ -22,6 +22,8 @@ export type APIGenerateCodeQuery = {
 
 export const useGeneratorApi = (api_key) => {
 
+    console.log({base_url})
+
     const [loading, setLoading] = useState<boolean>(false)
     const [error, setError] = useState(null)
     const [data, setData] = useState([])

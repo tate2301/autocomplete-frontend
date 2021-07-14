@@ -1,11 +1,12 @@
 import Head from 'next/head'
 import 'tailwindcss/tailwind.css'
 import Footer from '../components/Footer'
+import { AuthProvider } from '../lib/auth'
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
     return (
-        <>
+        <AuthProvider>
             <Head>
             <link rel="preconnect" href="https://fonts.googleapis.com" />
             <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={"true"} />
@@ -18,7 +19,7 @@ function MyApp({ Component, pageProps }) {
             </Head>
             <Component {...pageProps} />
             <Footer />
-        </>
+        </AuthProvider>
     )
 }
 

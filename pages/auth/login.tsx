@@ -2,6 +2,7 @@ import ThotAILogo from '../../components/logo/thotai'
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { useAuth } from '../../lib/auth'
 import Button from '../../components/Button'
+import Head from 'next/head'
 
 
 export default function Example() {
@@ -9,6 +10,9 @@ export default function Example() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black py-12 px-4 sm:px-6 lg:px-8">
+      <Head>
+        <title>Sign in</title>
+      </Head>
       <div className="max-w-md w-full space-y-8">
         <div>
           <ThotAILogo className="mx-auto h-16 w-auto text-white"/>

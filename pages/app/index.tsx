@@ -1,5 +1,6 @@
 import CustomerNavbar from '../../components/navbar/CustomerNavbar'
 import WorkspaceCard from '../../components/WorkspaceCard'
+import { verifyAuthenticatedClient } from '../../lib/constants'
 
 const workspaces = [
   {
@@ -47,3 +48,5 @@ export default function Example() {
     </div>
   )
 }
+
+export const getServerSideProps = verifyAuthenticatedClient

@@ -4,6 +4,7 @@ import CustomerNavbar from '../../../components/navbar/CustomerNavbar'
 import SnippetCard from "../../../components/SnippetCard";
 import { useState } from "react";
 import GenerateCodeForm from "../../../components/forms/GenerateCodeForm";
+import { verifyAuthenticatedClient } from "../../../lib/constants";
 
 export default function App({api_key}) {
   return (
@@ -46,10 +47,4 @@ export default function App({api_key}) {
     )
 }
 
-export const getServerSideProps = async (ctx) => {
-  return {
-    props: {
-      api_key: process.env.THOT_KEY
-    }
-  }
-}
+export const getServerSideProps = verifyAuthenticatedClient

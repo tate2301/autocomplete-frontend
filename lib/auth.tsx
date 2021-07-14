@@ -27,7 +27,7 @@ export const useAuth = () => {
         auth.signInWithEmailAndPassword(email, password)
             .then(value => {
                 setAuthSuccess(true)
-                setAuthLoading(false)
+                window.location.href = "/app"
                 setAuthLoading(null)
             })
             .catch(err => {
@@ -47,7 +47,7 @@ export const useAuth = () => {
         auth.signInWithPopup(provider)
             .then((result) => {
                 setAuthError(null)
-                setAuthLoading(false)
+                window.location.href = "/app"
                 setAuthSuccess(true)
             }).catch((error) => {
                 setAuthError(error)
@@ -71,7 +71,14 @@ export const useAuth = () => {
         })
     }
 
-    return { signInWithEmail, signInWithGoogle, resetPassword, authSuccess, authLoading, authError }
+    const logout = () => {
+        auth.signOut()
+            .then(() => {
+                window.location.reload()
+            })
+    }
+
+    return { signInWithEmail, signInWithGoogle, resetPassword, logout, authSuccess, authLoading, authError }
 }
 
 export const AuthContext = createContext(null)
