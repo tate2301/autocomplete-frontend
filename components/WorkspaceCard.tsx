@@ -5,17 +5,14 @@ export default function WorkspaceCard({items, name, docId, dateCreated, storageB
     return (
         <Link href={`/app/${docId}/`}>
             <a>
-                <div className="bg-dark-gray border border-border-gray p-2 md:p-4 rounded-md w-full">
+                <div className="bg-dark-gray border border-border-gray p-2 md:p-4 rounded-md w-full col-span-1">
                     <div className="grid grid-cols-5">
                         <div className="col-span-4">
                             <h4 className="text-white text-lg">
                                 {name}
                             </h4>
-                            <p className="text-sm mt-2">
+                            <p className="text-xs mt-2">
                                 Created: {new Date(dateCreated).toDateString()}
-                            </p>
-                            <p className="text-sm">
-                                Items: {items?.length}
                             </p>
                         </div>
                         <div className="col-span-1">

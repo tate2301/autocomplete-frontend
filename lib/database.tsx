@@ -5,12 +5,12 @@ export const createWorkspace = async ({
     uid, name
 }) => {
     await firestore.collection("workspaces")
-      .add({uid, name, dateCreated: new Date().getDate()})
+      .add({uid, name, dateCreated: new Date().toDateString()})
     return
 }
 
 export const useWorkspaces = (uid) => {
-    return useQuery(uid && firestore.collection("workspaces").doc(uid))
+    return useQuery(uid && firestore.collection("workspaces").where("uid", "==", uid))
 }
 
 /**** HELPERS ****/
