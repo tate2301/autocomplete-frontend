@@ -7,9 +7,9 @@ import { useContext } from 'react'
 
 export default function CustomerNavbar() {
   const { logout } = useAuth()
-  const user = useContext(AuthContext)
+  const data = useContext(AuthContext)
 
-  console.log({user})
+  const { user } = data
   return (
     <Disclosure as="nav" className="bg-black border-b border-border-gray">
       {({ open }) => (

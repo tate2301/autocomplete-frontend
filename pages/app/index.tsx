@@ -20,7 +20,7 @@ const workspaces = [
   }
 ]
 
-export default function Example() {
+export default function Index() {
   return (
     <div className="min-h-screen bg-black">
       <header className="bg-black shadow">

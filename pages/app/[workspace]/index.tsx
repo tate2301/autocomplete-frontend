@@ -1,8 +1,5 @@
 import { DownloadIcon, TrashIcon } from "@heroicons/react/outline";
-import { PlusIcon } from "@heroicons/react/solid";
 import CustomerNavbar from '../../../components/navbar/CustomerNavbar'
-import SnippetCard from "../../../components/SnippetCard";
-import { useState } from "react";
 import GenerateCodeForm from "../../../components/forms/GenerateCodeForm";
 import { verifyAuthenticatedClient } from "../../../lib/constants";
 
