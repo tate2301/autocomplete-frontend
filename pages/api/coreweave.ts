@@ -18,6 +18,6 @@ export default async function coreweave(req: NextApiRequest, res: NextApiRespons
         const data = await api_req.json()
 
         await console.log({data})
-        return res.json(data?.predictions[0])
+        return res.json(data?.predictions)
     }
 }
