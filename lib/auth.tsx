@@ -1,6 +1,7 @@
-import { useEffect } from "react"
+import { createContext, useEffect } from "react"
 import { useState } from "react"
 import { auth, authBase } from "./__firebase__"
+import nookies from 'nookies';
 
 export const useAuth = () => {
     const [authSuccess, setAuthSuccess] = useState(false)
@@ -71,4 +72,39 @@ export const useAuth = () => {
     }
 
     return { signInWithEmail, signInWithGoogle, resetPassword, authSuccess, authLoading, authError }
+}
+
+export const AuthContext = createContext(null)
+
+export function AuthProvider({children}) {
+    const [user, setUser] = useState()
+
+    useEffect(() => {
+        return auth.onIdTokenChanged(async (user) => {
+          if (!user) {
+            setUser(null);
+            nookies.set(undefined, 'token', '', { path: '/' });
+          } else {
+            const token = await user.getIdToken();
+            // @ts-ignore
+            setUser(user);
+            nookies.set(undefined, 'token', token, { path: '/' });
+          }
+        });
+      }, []);
+
+    // force refresh the token every 10 minutes
+    useEffect(() => {
+        const handle = setInterval(async () => {
+        const user = auth.currentUser;
+        if (user) await user.getIdToken(true);
+        }, 10 * 60 * 1000);
+
+        // clean up setInterval
+        return () => clearInterval(handle);
+    }, []);
+
+    return (
+        <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
+      );
 }

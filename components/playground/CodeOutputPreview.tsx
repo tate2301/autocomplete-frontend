@@ -22,3 +22,21 @@ export default function CodeOutputPreview({selectedLang, selectedCode}){
         </div>
     )
 }
+
+
+export function CodeSnippetPreview({code, lang}: {code: string, lang: string}) {
+    useEffect(() => {
+        Prism.highlightAll();
+      }, [lang, code]);
+
+    const lang_class = lang === "cpp" ? "clike" : lang === "js" ? "javascript" : "python"
+    return(
+        <div className="p-2 h-full bg-black rounded-md">
+            <pre className={"text-sm py-2 px-4"}>
+                <code className={`lang-${lang_class}`}>
+                    {code.split("A:")[1].trim()}
+                </code>
+            </pre>
+        </div>
+    )
+}

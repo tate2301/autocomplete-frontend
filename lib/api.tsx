@@ -24,15 +24,17 @@ export const useGeneratorApi = (api_key) => {
 
     const [loading, setLoading] = useState<boolean>(false)
     const [error, setError] = useState(null)
-    const [data, setData] = useState(null)
+    const [data, setData] = useState([])
+    const [lang, setLang] = useState(null)
 
     const init = () => {
         setError(null)
-        setData(null)
+        setData([])
         setLoading(true)
     }
 
     const submitQuery = ({lang, query, pythonType}) => {
+        setLang(lang)
         init()
 
         const api_query: APIGenerateCodeQuery = {
@@ -61,6 +63,7 @@ export const useGeneratorApi = (api_key) => {
         error,
         data,
         loading,
+        lang,
         submitQuery,
     }
 
