@@ -18,6 +18,7 @@ export default function GenerateCodeForm({api_key}) {
     const [isPythonSelected, setIsPythonSelected] = useState(true)
     const { loading, data, error, lang, submitQuery } = useGeneratorApi(api_key)
 
+    console.log({data})
     return(
         <div className="py-6 px-4 sm:px-6 lg:px-8 space-y-4">
             <form onSubmit={onSubmit} className="h-full border-2 border-border-gray bg-light-gray rounded-lg p-4 space-y-4">

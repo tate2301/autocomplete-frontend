@@ -8,7 +8,7 @@ export default function App({api_key}) {
   return (
       <>
         <Head>
-          <title></title>
+          <title>Workspaces</title>
         </Head>
         <header className="bg-black">
           <CustomerNavbar />

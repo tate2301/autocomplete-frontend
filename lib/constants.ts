@@ -60,7 +60,11 @@ export const verifyAuthenticatedClient = async (ctx) => {
         const cookies = nookies.get(ctx);
         await firebaseAdmin.auth().verifyIdToken(cookies.token);
   
-        return blankServerProps
+        return {
+            props: {
+                api_key: process.env.THOT_KEY
+            }
+        }
     } catch (err) {
         return redirectToLogin
     }
