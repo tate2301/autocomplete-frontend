@@ -17,6 +17,7 @@ import {
   XIcon,
 } from '@heroicons/react/outline'
 import { ChevronDownIcon } from '@heroicons/react/solid'
+import { verifyAuthenticatedClient } from '../lib/constants'
 
 const solutions = [
   {
@@ -606,3 +607,5 @@ export default function Example() {
     </div>
   )
 }
+
+export const getServerSideProps = verifyAuthenticatedClient

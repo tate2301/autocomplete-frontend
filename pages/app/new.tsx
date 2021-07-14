@@ -1,4 +1,5 @@
 import CustomerNavbar from "../../components/navbar/CustomerNavbar";
+import { verifyAuthenticatedClient } from "../../lib/constants";
 
 export default function NewWorkspace() {
     return (
@@ -9,3 +10,5 @@ export default function NewWorkspace() {
         </>
     )
 }
+
+export const getServerSideProps = verifyAuthenticatedClient

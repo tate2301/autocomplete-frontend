@@ -2,6 +2,7 @@ import CustomerNavbar from '../../components/navbar/CustomerNavbar'
 import Subscription from '../../components/account/Subscription'
 import UpdateEmail from '../../components/account/UpdateEmail'
 import UpdatePassword from '../../components/account/UpdatePassword'
+import { verifyAuthenticatedClient } from '../../lib/constants'
 
 export default function Example() {
 
@@ -32,3 +33,5 @@ export default function Example() {
     </>
   )
 }
+
+export const getServerSideProps = verifyAuthenticatedClient

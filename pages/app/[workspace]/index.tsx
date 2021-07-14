@@ -12,7 +12,7 @@ export default function App({api_key}) {
   return (
       <>
         <Head>
-          <title>Workspaces</title>
+          <title>{(workspace?.name || "Loading... ") + " | ThotAI Workspaces" }</title>
         </Head>
         <header className="bg-black">
           <CustomerNavbar />

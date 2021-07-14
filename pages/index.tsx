@@ -7,6 +7,7 @@ import LandingPageFAQs from "../components/LandingPageFAQs"
 import LandingPageFeatureSection from "../components/LandingPageFeatureSection"
 import TopFeaturesSection from "../components/TopFeaturesSection"
 import Playground from "../components/playground/Playground"
+import { verifyAuthenticatedClient } from "../lib/constants"
 
 export default function LandingPage() {
     return(
@@ -24,3 +25,5 @@ export default function LandingPage() {
         </>
     )
 }
+
+export const getServerSideProps = verifyAuthenticatedClient
