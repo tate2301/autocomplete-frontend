@@ -12,6 +12,10 @@ export const useAuth = () => {
     }>(null)
     const [authLoading, setAuthLoading] = useState(null)
 
+    const sendEmailVerification = () => {
+        auth.currentUser.sendEmailVerification()
+    }
+
     const signInWithEmail = (e) => {
         e.preventDefault()
         const email = e.target.email.value
@@ -48,6 +52,7 @@ export const useAuth = () => {
                     displayName: fullname
                 })
                 setAuthSuccess(true)
+                await value.user.sendEmailVerification()
                 return window.location.href = "/app"
             })
             .catch(err => {
@@ -94,11 +99,11 @@ export const useAuth = () => {
     const logout = () => {
         auth.signOut()
             .then(() => {
-                window.location.reload()
+                window.location.href = "/"
             })
     }
 
-    return { signInWithEmail, signInWithGoogle, signUpWithEmail, resetPassword, logout, authSuccess, authLoading, authError }
+    return { signInWithEmail, signInWithGoogle, signUpWithEmail, resetPassword, logout, sendEmailVerification, authSuccess, authLoading, authError }
 }
 
 export const AuthContext = createContext({user: null})
