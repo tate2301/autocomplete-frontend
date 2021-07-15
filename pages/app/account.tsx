@@ -7,6 +7,7 @@ import { useRouter } from 'next/dist/client/router'
 import { useContext, useEffect } from 'react'
 import { registerSubscription, useMySubscription } from '../../lib/database'
 import { AuthContext } from '../../lib/auth'
+import axios from 'axios'
 
 export default function Example() {
   const router = useRouter()
@@ -17,9 +18,16 @@ export default function Example() {
     if(session_id && user && subscription) {
         if(!subscription || subscription?.length === 0) {
           registerSubscription(session_id).then(() => {
-            window.location.href= "/app/account"
+            axios.post("/api/user/custom-roles", { session_id })
+              .then((res) => {
+                if(res.status === 200) {
+                  window.location.href= "/app/account"
+                }
+              }).catch(err => {
+                window.location.reload()
+              })
           })
-        }
+      }
     }
   }, [session_id, user, subscription])
 
