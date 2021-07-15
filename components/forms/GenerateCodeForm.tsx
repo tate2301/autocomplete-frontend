@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useGeneratorApi } from "../../lib/api";
 import Button from "../Button";
 import { CodeSnippetPreview } from "../playground/CodeOutputPreview";
+import { Collapse } from "@chakra-ui/react"
 
 export default function GenerateCodeForm({api_key}) {
     const onSubmit = (e) => {
@@ -91,13 +92,13 @@ export default function GenerateCodeForm({api_key}) {
                         <button className="bg-black rounded-full p-1">
                             <ClipboardIcon className="h-5 w-5 text-gray-200" />
                         </button>
-                        <button className="bg-black rounded-full p-1">
-                            <RefreshIcon className="h-5 w-5 text-gray-200" />
-                        </button>
                     </div>
                 </div>
                 <div>
+                <Collapse in={data.length !== 0} animateOpacity>
                     {data.map((code, key) => <CodeSnippetPreview lang={lang} code={code} key={key} />)}
+                </Collapse>
+                    
                 </div>
             </div>
     </div>

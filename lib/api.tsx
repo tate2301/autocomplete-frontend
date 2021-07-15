@@ -1,4 +1,5 @@
 import axios from "axios"
+import { useRouter } from "next/dist/client/router"
 import { useState } from "react"
 export const base_url = process.env.NODE_ENV === "production" ? "https://thot.ai" : "http://localhost:3000"
 
@@ -15,13 +16,15 @@ export type APIGenerateCodeQuery = {
     language: SupportedLanguages;
     api_key: string;
     code_type_param: string;
+    workspace: any;
 }
 
 
 
 export const useGeneratorApi = (api_key) => {
 
-
+    const router = useRouter()
+    const { workspace } = router.query
     const [loading, setLoading] = useState<boolean>(false)
     const [error, setError] = useState(null)
     const [data, setData] = useState([])
@@ -41,7 +44,8 @@ export const useGeneratorApi = (api_key) => {
             language: lang,
             prompt: query,
             code_type_param: pythonType,
-            api_key
+            api_key,
+            workspace
         }
 
 

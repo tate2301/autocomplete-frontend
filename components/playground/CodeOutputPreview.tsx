@@ -30,13 +30,13 @@ export function CodeSnippetPreview({code, lang}: {code: string, lang: string}) {
       }, [lang, code]);
 
     const lang_class = lang === "cpp" ? "clike" : lang === "js" ? "javascript" : "python"
-    let ren = code.split("A:")[1].trim()
-
-    console.log(ren, ren.split("<|")[0])
+    let ren = code.split("A:")[1]?.trim() ?? code.trim()
+    
+    ren = ren.split("<|")[0]
     return(
         <div className="p-2 h-full bg-black rounded-md">
             <pre className={"text-sm py-2 px-4"}>
-                <code className={`lang-${lang_class}`}>
+                <code id="code-output" className={`lang-${lang_class}`}>
                     {ren}
                 </code>
             </pre>

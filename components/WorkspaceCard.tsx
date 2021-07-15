@@ -17,10 +17,7 @@ export default function WorkspaceCard({items, name, docId, dateCreated, storageB
                         </div>
                         <div className="col-span-1">
                             <div className="w-full flex justify-end space-x-2">
-                                <button className="p-1 rounded-full bg-yellow-500">
-                                    <DownloadIcon className="h-5 w-5 text-white" />
-                                </button>
-                                <button className="p-1 rounded-full bg-red-500">
+                                <button className="p-1 rounded-full bg-light-gray">
                                     <TrashIcon className="h-5 w-5 text-white" />
                                 </button>
                             </div>
