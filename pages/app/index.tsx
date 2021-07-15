@@ -3,20 +3,63 @@ import Head from 'next/head'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useContext } from 'react'
+import Subscription from '../../components/account/Subscription'
 import CustomerNavbar from '../../components/navbar/CustomerNavbar'
 import NewWorkspaceModal from '../../components/NewWorkspaceModal'
 import WorkspaceCard from '../../components/WorkspaceCard'
 import { AuthContext } from '../../lib/auth'
 import { verifyAuthenticatedClient } from '../../lib/constants'
 import { useWorkspaces } from '../../lib/database'
+import { SubscriptionContext } from '../../lib/subscriptions'
 
 
 export default function Index() {
   const auth = useContext(AuthContext)
+  const { subscription: { status, data, error} } = useContext(SubscriptionContext)
+  const { data: workspaces } = useWorkspaces(auth?.user?.uid)
+
+
+  return (
+    <div className="min-h-screen bg-black">
+      <Head>
+        <title>Workspaces ({workspaces?.length || 0})</title>
+      </Head>
+      <header className="bg-black shadow">
+        <CustomerNavbar />
+      </header>
+      <Body status={status} workspaces={workspaces} subscription={data} error={error} />
+      </div>
+  )
+}
+
+const Body = ({ status, subscription, error, workspaces }) => {
+  if (status === "loading") {
+    return(
+      <div className="py-12 flex justify-center mx-auto space-y-8 max-w-5xl">
+        <p>Loading...</p>
+      </div>
+    )
+  } else if(error) {
+    return(
+      <div className="py-12 flex justify-center mx-auto space-y-8 max-w-5xl">
+        <p>{error}</p>
+      </div>
+    )
+  } else if(!subscription?.[0]) {
+    return (
+      <main className="py-10 max-w-5xl px-2 mx-auto space-y-8">
+        <Subscription active={false} />
+      </main>
+    )
+  } else {
+    return (<Workspaces workspaces={workspaces} />)
+  }
+}
+
+const Workspaces = ({ workspaces }) => {
   const [empty, setEmpty] = useState(true)
   const [open, setOpen] = useState(false)
 
-  const { data: workspaces } = useWorkspaces(auth?.user?.uid)
   const openModal = () => setOpen(true)
   const close = () => setOpen(false)
 
@@ -29,15 +72,7 @@ export default function Index() {
   }, [workspaces])
 
   return (
-    <div className="min-h-screen bg-black">
-      <Head>
-        <title>Workspaces ({workspaces?.length || 0})</title>
-      </Head>
-      <header className="bg-black shadow">
-        <CustomerNavbar />
-      </header>
-
-      <main className="py-10 max-w-5xl px-2 mx-auto space-y-8">
+    <main className="py-10 max-w-5xl px-2 mx-auto space-y-8">
         <div className="md:flex md:items-center md:justify-between">
           <div className="flex-1 min-w-0">
             <h2 className="text-2xl font-bold leading-7 text-white sm:text-3xl sm:truncate">Workspaces ({workspaces?.length || 0})</h2>
@@ -57,7 +92,7 @@ export default function Index() {
           {!empty ? workspaces?.map((space, key) => <WorkspaceCard key={key} {...space} />) : <NoWorkspacesPresent />}
         </div>
       </main>
-    </div>
+   
   )
 }
 

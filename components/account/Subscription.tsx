@@ -51,12 +51,14 @@ function InActiveSubscription() {
                 You are not on an active subscription
             </h3>
             <p className="mt-1 text-sm">
-                Subscribe to one of our plans to have access to the API. It's a $29.99/month price for unlimited requests.
+                Subscribe to one of our plans to have access to the API. It's only $39.99/month price for unlimited requests.
             </p>
             <div className="mt-4">
-                <Button className="rounded-md px-8 py-2 bg-yellow-500 text-black font-bold">
-                    Subscribe now
-                </Button>
+                <a href="/api/checkout/">
+                    <Button className="rounded-md px-8 py-2 bg-yellow-500 text-black font-bold">
+                        Subscribe now
+                    </Button>
+                </a>
             </div>
         </div>
     )
@@ -64,5 +66,5 @@ function InActiveSubscription() {
 
 type SubscriptionProps = {
     active?: boolean
-    subscription: any
+    subscription?: any
 }
