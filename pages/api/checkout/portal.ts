@@ -10,10 +10,9 @@ const createPortalLink = async (req: NextApiRequest, res: NextApiResponse) => {
         const user = await firebaseAdmin.auth().verifyIdToken(cookies.token)
 
         const claims = await (await firebaseAdmin.auth().getUser(user.uid)).customClaims
-        console.log(claims)
 
         const { url } = await stripe.billingPortal.sessions.create({
-            customer: claims.session_id,
+            customer: claims.customer_id,
             return_url: `${process.env.BASE_URL}/app/account`
         });
 

@@ -2,32 +2,28 @@ import CustomerNavbar from '../../components/navbar/CustomerNavbar'
 import Subscription from '../../components/account/Subscription'
 import UpdateEmail from '../../components/account/UpdateEmail'
 import UpdatePassword from '../../components/account/UpdatePassword'
-import { verifyAuthenticatedClient } from '../../lib/constants'
+import { populateWithAccountDetails, verifyAuthenticatedClient } from '../../lib/constants'
 import { useRouter } from 'next/dist/client/router'
 import { useContext, useEffect } from 'react'
-import { registerSubscription, useMySubscription } from '../../lib/database'
 import { AuthContext } from '../../lib/auth'
 import axios from 'axios'
 
-export default function Example() {
+export default function Example({subscription, noSub}) {
   const router = useRouter()
   const { user } = useContext(AuthContext)
   const { session_id } = router.query
-  const { data: subscription, status, error } = useMySubscription(user?.uid)
+
+
   useEffect(() => {
-    if(session_id && user && subscription) {
-        if(!subscription || subscription?.length === 0) {
-          registerSubscription(session_id).then(() => {
-            axios.post("/api/user/custom-roles", { session_id })
-              .then((res) => {
-                if(res.status === 200) {
-                  window.location.href= "/app/account"
-                }
-              }).catch(err => {
-                window.location.reload()
-              })
+    if(session_id && user) {
+        axios.post("/api/user/custom-roles", { session_id })
+          .then((res) => {
+            if(res.status === 200) {
+              window.location.href= "/app/account"
+            }
+          }).catch(err => {
+            window.location.reload()
           })
-      }
     }
   }, [session_id, user, subscription])
 
@@ -36,6 +32,7 @@ export default function Example() {
       <div>Please wait as we set up your subscription</div>
     )
   }
+
   return (
     <>
       <header className="bg-black">
@@ -49,7 +46,7 @@ export default function Example() {
             </div>
 
             <div>
-              <Subscription active={true} />
+              <Subscription subscription={subscription} active={!noSub} />
             </div>
             <div>
               <UpdateEmail />
@@ -64,4 +61,4 @@ export default function Example() {
   )
 }
 
-export const getServerSideProps = verifyAuthenticatedClient
+export const getServerSideProps = populateWithAccountDetails

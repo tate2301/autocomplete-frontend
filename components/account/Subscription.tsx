@@ -1,33 +1,35 @@
 import Button from "../Button"
 
 export default function Subscription(props: SubscriptionProps) {
+
     if (!props.active) {
         return (
             <InActiveSubscription />
         )
     } else {
         return (
-            <ActiveSubscription/>
+            <ActiveSubscription subscription={props.subscription}/>
         )
     }
 }
 
-function ActiveSubscription() {
+function ActiveSubscription({subscription}) {
+    console.log({subscription})
     return (
         <div className="rounded-md p-2 md:p-4 bg-light-gray border border-border-gray">
             <h3 className="text-xl font-medium text-white">
                 You are on the Premium subscription
             </h3>
             <p className="mt-1 text-sm">
-                You subscription will be renewed on Wednesday, July 7, 2021.
+                You subscription will be renewed on {new Date(subscription.current_period_end * 1000).toDateString()}.
             </p>
 
-            <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+            {false && <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
                 <div className="px-4 py-5 bg-dark-gray shadow rounded-lg border border-border-gray overflow-hidden sm:p-6">
                     <dt className="text-sm font-medium text-gray-200 truncate">July Usage</dt>
                     <dd className="mt-1 text-3xl font-semibold text-white">14k</dd>
                 </div>
-            </dl>
+            </dl>}
 
             <div className="mt-4">
                 <form action="/api/checkout/portal">
@@ -61,4 +63,5 @@ function InActiveSubscription() {
 
 type SubscriptionProps = {
     active?: boolean
+    subscription: any
 }

@@ -40,13 +40,13 @@ export default function PublicNavbar() {
                 </div>
                 <div className="hidden md:flex space-x-4">
                     <a
-                        href="#"
+                        href="/auth/signup"
                         className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-bold rounded-md text-black bg-yellow-500"
                     >
                     Sign up
                   </a>
                   <a
-                    href="#"
+                    href="/auth/login"
                     className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-bold rounded-md text-white bg-gray-600 hover:bg-gray-700"
                   >
                     Log in
