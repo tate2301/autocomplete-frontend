@@ -1,3 +1,5 @@
+import { useContext } from "react"
+import { SubscriptionContext } from "../../lib/subscriptions"
 import Button from "../Button"
 
 export default function Subscription(props: SubscriptionProps) {
@@ -14,7 +16,6 @@ export default function Subscription(props: SubscriptionProps) {
 }
 
 function ActiveSubscription({subscription}) {
-    console.log({subscription})
     return (
         <div className="rounded-md p-2 md:p-4 bg-light-gray border border-border-gray">
             <h3 className="text-xl font-medium text-white">

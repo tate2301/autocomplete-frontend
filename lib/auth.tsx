@@ -33,6 +33,30 @@ export const useAuth = () => {
             })
     }
 
+    const signUpWithEmail = (e) => {
+        e.preventDefault()
+        const email = e.target.email.value
+        const password = e.target.password.value
+        const fullname = e.target.fullname.value
+        setAuthLoading(true)
+        setAuthSuccess(false)
+        setAuthError(null)
+
+        auth.createUserWithEmailAndPassword(email, password)
+            .then(async value => {
+                await value.user.updateProfile({
+                    displayName: fullname
+                })
+                setAuthSuccess(true)
+                return window.location.href = "/app"
+            })
+            .catch(err => {
+                setAuthSuccess(false)
+                setAuthError(err)
+                setAuthLoading(false)
+            })
+    }
+
     const signInWithGoogle = () => {
         let provider = new authBase.GoogleAuthProvider()
         provider.addScope('https://www.googleapis.com/auth/contacts.readonly')
@@ -74,7 +98,7 @@ export const useAuth = () => {
             })
     }
 
-    return { signInWithEmail, signInWithGoogle, resetPassword, logout, authSuccess, authLoading, authError }
+    return { signInWithEmail, signInWithGoogle, signUpWithEmail, resetPassword, logout, authSuccess, authLoading, authError }
 }
 
 export const AuthContext = createContext({user: null})
