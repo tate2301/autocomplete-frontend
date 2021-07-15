@@ -21,7 +21,7 @@ export default function PublicNavbar() {
                   <div className="flex items-center justify-between w-full md:w-auto">
                     <a href="#">
                       <span className="sr-only">ThotAI</span>
-                      <ThotAILogo className="h-10 w-auto sm:h-10 text-yellow-500" />
+                      <ThotAILogo className="text-yellow-500 h-10 w-auto sm:h-10 text-yellow-500" />
                     </a>
                     <div className="-mr-2 flex items-center md:hidden">
                       <Popover.Button className="bg-gray-800 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-700 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white">
@@ -72,7 +72,7 @@ export default function PublicNavbar() {
                   <div className="rounded-lg shadow-md bg-dark-gray ring-1 ring-black ring-opacity-5 overflow-hidden">
                     <div className="px-5 pt-4 flex items-center justify-between">
                       <div>
-                        <ThotAILogo className="h-10 w-auto sm:h-10 text-yellow-500" />
+                        <ThotAILogo className="text-yellow-500 h-10 w-auto sm:h-10 text-yellow-500" />
                       </div>
                       <div className="-mr-2">
                         <Popover.Button className="bg-black rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500">

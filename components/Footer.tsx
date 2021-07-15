@@ -30,7 +30,7 @@ const navigation = {
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
           <div className="xl:grid xl:grid-cols-3 xl:gap-8">
             <div className="space-y-8 xl:col-span-1">
-              <ThotAILogo className="h-10"/>
+              <ThotAILogo className="text-yellow-500 h-10"/>
               <p className="text-white-300 text-base">
                 Making the world a better place through constructing elegant hierarchies.
               </p>

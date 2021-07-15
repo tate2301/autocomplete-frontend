@@ -15,7 +15,7 @@ export default function Example() {
       </Head>
       <div className="max-w-md w-full space-y-8">
         <div>
-          <ThotAILogo className="mx-auto h-16 w-auto text-white"/>
+          <ThotAILogo className="text-yellow-500 mx-auto h-16 w-auto"/>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-50">Sign in to your account</h2>
         </div>
         <form onSubmit={signInWithEmail} className="mt-8 space-y-6" action="#" method="POST">

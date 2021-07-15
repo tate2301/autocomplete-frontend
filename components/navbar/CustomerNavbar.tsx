@@ -4,6 +4,7 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import ThotAILogo from '../logo/thotai'
 import { AuthContext, useAuth } from '../../lib/auth'
 import { useContext } from 'react'
+import { Avatar } from '@chakra-ui/react'
 
 export default function CustomerNavbar() {
   const { logout, sendEmailVerification } = useAuth()
@@ -19,7 +20,7 @@ export default function CustomerNavbar() {
               <div className="relative flex items-center justify-between h-16">
                 <div className="flex items-center px-2 lg:px-0">
                   <div className="flex-shrink-0">
-                    <ThotAILogo className="h-8 w-8"/>
+                    <ThotAILogo className="text-yellow-500 h-8 w-8 text-yellow-500"/>
                   </div>
                   <div className="hidden lg:block lg:ml-6">
                     <div className="flex space-x-4">
@@ -49,8 +50,8 @@ export default function CustomerNavbar() {
                 </div>
                 <div className="hidden lg:block lg:ml-4">
                   <div className="flex items-center">
-                    <img
-                      className="h-8 w-8 rounded-full"
+                    <Avatar
+                      className="h-8 w-8 rounded-full  border border-border-gray"
                       src={user?.photoURL}
                       alt=""
                     />
@@ -79,8 +80,8 @@ export default function CustomerNavbar() {
               <div className="pt-4 pb-3 border-t border-dark-gray">
                 <div className="flex items-center px-5">
                   <div className="flex-shrink-0">
-                    <img
-                      className="h-10 w-10 rounded-full"
+                    <Avatar
+                      className="h-10 w-10 rounded-full border border-border-gray"
                       src={user?.photoURL}
                       alt=""
                     />
