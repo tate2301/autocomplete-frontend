@@ -77,7 +77,7 @@ export const useAuth = () => {
     return { signInWithEmail, signInWithGoogle, resetPassword, logout, authSuccess, authLoading, authError }
 }
 
-export const AuthContext = createContext(null)
+export const AuthContext = createContext({user: null})
 
 export function AuthProvider({children}) {
     const [user, setUser] = useState()

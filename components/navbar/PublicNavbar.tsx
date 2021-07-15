@@ -14,7 +14,7 @@ export default function PublicNavbar() {
           {({ open }) => (
             <>
               <nav
-                className="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6"
+                className="relative max-w-7xl mx-auto flex items-center justify-between px-4 py-4 sm:px-6"
                 aria-label="Global"
               >
                 <div className="flex items-center flex-1">
@@ -43,7 +43,7 @@ export default function PublicNavbar() {
                         href="#"
                         className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-bold rounded-md text-black bg-yellow-500"
                     >
-                    Get started now
+                    Sign up
                   </a>
                   <a
                     href="#"
@@ -96,7 +96,7 @@ export default function PublicNavbar() {
                       href="#"
                       className="block w-full px-5 py-3 text-center font-medium text-yellow-600 bg-light-gray"
                     >
-                      Try free
+                      Sign up
                     </a>
                   </div>
                 </Popover.Panel>

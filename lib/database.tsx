@@ -1,6 +1,15 @@
 import { useEffect, useReducer, useRef } from "react";
 import { firestore } from "./__firebase__";
 
+export const registerSubscription = async (session_id) => {
+    await firestore.collection("subscriptions")
+      .add({customer: session_id, dateCreated: new Date().toDateString()})
+    return
+}
+
+export const useMySubscription = uid => {
+    return useQuery(uid && firestore.collection("subscriptions").where("uid", "==", uid)); 
+}
 
 export const useThisWorkspace = id => {
     return useQuery(id && firestore.collection("workspaces").doc(id));
