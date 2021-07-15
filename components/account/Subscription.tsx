@@ -28,6 +28,14 @@ function ActiveSubscription() {
                     <dd className="mt-1 text-3xl font-semibold text-white">14k</dd>
                 </div>
             </dl>
+
+            <div className="mt-4">
+                <form action="/api/checkout/portal">
+                    <Button type="submit" className="rounded-md px-8 py-2 bg-yellow-500 text-black font-bold">
+                        Manage
+                    </Button>
+                </form>
+            </div>
             
         </div>
     )

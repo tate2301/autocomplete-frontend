@@ -83,6 +83,7 @@ export function AuthProvider({children}) {
     const [user, setUser] = useState()
 
     useEffect(() => {
+        
         return auth.onIdTokenChanged(async (user) => {
           if (!user) {
             setUser(null);
