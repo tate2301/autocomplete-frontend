@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { parseCookies } from "nookies";
-import { generator_api_url_cors } from "../../lib/constants";
+import { generator_api_url, generator_api_url_cors } from "../../lib/constants";
 import { firebaseAdmin } from "../../lib/firebaseAdmin";
 
 export default async function coreweave(req: NextApiRequest, res: NextApiResponse) {
@@ -28,9 +28,13 @@ export default async function coreweave(req: NextApiRequest, res: NextApiRespons
             console.log(bodyData)
 
             // Update usage requests count
-            await firebaseAdmin.firestore().collection("usage").doc(user.uid).update({ request_count: firebaseAdmin.firestore.FieldValue.increment(1) })
+            try {
+                await firebaseAdmin.firestore().collection("usage").doc(user.uid).update({ request_count: firebaseAdmin.firestore.FieldValue.increment(1) })
+            } catch(err) {
+                await firebaseAdmin.firestore().collection("usage").doc(user.uid).set({ request_count: firebaseAdmin.firestore.FieldValue.increment(1) })
+            }
 
-            const api_req = await fetch(generator_api_url_cors, {
+            const api_req = await fetch(generator_api_url, {
                 body: JSON.stringify(bodyData),
                 method: "post"
             })
@@ -47,7 +51,7 @@ export default async function coreweave(req: NextApiRequest, res: NextApiRespons
                 } 
             })
 
-            await console.log("Saved")
+            await console.log(data)
 
             return res.json(data?.predictions)
         } catch (err) {

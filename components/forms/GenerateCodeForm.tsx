@@ -37,7 +37,7 @@ export default function GenerateCodeForm({api_key}) {
                     />
                     </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 space-x-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="col-span-1">
                         <label htmlFor="language" className="block text-sm font-medium text-gray-100">
                             Language
