@@ -25,8 +25,7 @@ export default async function coreweave(req: NextApiRequest, res: NextApiRespons
                 api_key: body.data.api_key,
             }
 
-            console.log(bodyData)
-
+            
             // Update usage requests count
             try {
                 await firebaseAdmin.firestore().collection("usage").doc(user.uid).update({ request_count: firebaseAdmin.firestore.FieldValue.increment(1) })
@@ -39,21 +38,17 @@ export default async function coreweave(req: NextApiRequest, res: NextApiRespons
                 method: "post"
             })
     
-            await console.log("Fetched")
-
             const data = await api_req.json()
     
             // Save request and response in firestore history
-            await firebaseAdmin.firestore().collection("requests").doc(user.uid).set({ request: {
+            await firebaseAdmin.firestore().collection("requests").doc(user.uid).set({ requests: firebaseAdmin.firestore.FieldValue.arrayUnion({
                     ...body.data,
                     workspace,
-                    predictions: data?.predictions
-                } 
+                    predictions: data?.predictions[0][0]
+                }) 
             })
 
-            await console.log(data)
-
-            return res.json(data?.predictions)
+            return res.json(data?.predictions[0])
         } catch (err) {
             console.log(err)
             return res.status(500).json({err})
