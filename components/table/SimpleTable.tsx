@@ -141,7 +141,8 @@ export default function SimpleTable({data, cols, ContextComponent}: {
 }) {
     const columns = cols ?? Ccolumns
 
-    const [limit, setLimit] = useState<number>(0)
+    const [limit, setLimit] = useState<number>(7)
+    const limited_people = people.slice(0,limit)
 
     return (
         <div className="flex flex-col">
@@ -172,7 +173,7 @@ export default function SimpleTable({data, cols, ContextComponent}: {
                                 </tr>
                             </thead>
                             <tbody className="divide-y">
-                                {people.map((val) => {
+                                {limited_people.map((val) => {
                                     const entries = Object.entries(val)
 
                                     return (
