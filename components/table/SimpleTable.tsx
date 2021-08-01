@@ -8,7 +8,10 @@ const people = [
     },
 ]
 const Ccolumns = Object.keys(people[0])
-import {SearchIcon} from '@heroicons/react/outline'
+import { SearchIcon } from '@heroicons/react/outline'
+import { Input } from "@chakra-ui/react"
+import { Text } from "@chakra-ui/react"
+import { Flex, Center } from "@chakra-ui/react"
 
 /***
  * @param data Array<any> 
@@ -25,8 +28,14 @@ export default function SimpleTable({data, cols, ContextComponent}: {
     const columns = cols ?? Ccolumns
     return (
         <div className="flex flex-col">
-            <div className="flex flex-col items-start">
-                <SearchIcon height={16} width={16} className="text-gray-300" />
+            <Flex color="white">
+                <Center w="100%" px={6}>
+                    <Text color="gray.500" mr={4}><SearchIcon height={16} width={16}/></Text>
+                    <Input placeholder="search name or id or email" variant="unstyled" color="gray.300" />
+                </Center>
+            </Flex>
+            <div className="flex flex-row items-center w-full p-2">
+                
             </div>
             <div className="my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
