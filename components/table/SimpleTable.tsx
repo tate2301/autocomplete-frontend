@@ -130,6 +130,9 @@ import { useEffect, useState } from 'react'
 /***
  * @param data Array<any> 
  * @param columns Array<string>  
+ * @param rows_per_each_call
+ * 
+ * the rows_per_each_call is the number of rows to be calls from aoi everytime load more is pressed
  * 
  * The param columns should contain the names of the columns to be displayed and in the correct order.
  * 
@@ -146,8 +149,7 @@ export default function SimpleTable({data, cols, ContextComponent, rows_per_each
     const [limit, setLimit] = useState<number>(skip)
     const limited_people = people.slice(0,limit)    
    
-    console.log(skip)
-
+    // to load more items
     const handle_loadMore = (e: any) =>{
         e.preventDefault()
         setLimit(limit + skip)
