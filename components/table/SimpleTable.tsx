@@ -205,8 +205,13 @@ export default function SimpleTable({data, cols, ContextComponent, rows_per_each
                     </div>
                 </div>
             </div>
+               
                 <div className="flex self-center">
-                    <Button onClick={handle_loadMore} size="md">Load More</Button>
+                    {
+                        limit >= people.length ?
+                        (<Button disabled onClick={handle_loadMore} size="md">No more items</Button>): 
+                        (<Button onClick={handle_loadMore} size="md">Load More</Button>)
+                    }
                 </div>
         </div>
     )
