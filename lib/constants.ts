@@ -22,7 +22,7 @@ export const blankServerProps = {
 export const redirectToLogin = {
     redirect: {
       permanent: false,
-      destination: "/auth/login",
+      destination: "/auth/",
     },
     props: {
 
@@ -32,41 +32,12 @@ export const redirectToLogin = {
 export const redirectToDashboard = {
     redirect: {
       permanent: false,
-      destination: "/app",
+      destination: "https://app.thot.ai",
     },
     props: {
 
     },
 };
-
-export const populateWithAccountDetails = async ctx => {
-    try {
-        const cookies = nookies.get(ctx);
-        const user = await firebaseAdmin.auth().verifyIdToken(cookies.token);
-        const claims = await (await firebaseAdmin.auth().getUser(user.uid)).customClaims
-
-        try {
-            const subscription = await stripe.subscriptions.retrieve(claims.subscription)
-            return {
-                props: {
-                    api_key: process.env.THOT_KEY,
-                    subscription
-                }
-            }
-
-        } catch(err) {
-            console.log(err)
-            return {
-                props: {
-                    noSub: true
-                }
-            }
-        }
-        
-    } catch (err) {
-        return redirectToLogin
-    }
-}
 
 export const verifyAuthenticatedAsAdmin = async (ctx) => {
     try {
@@ -79,21 +50,6 @@ export const verifyAuthenticatedAsAdmin = async (ctx) => {
             return redirectToDashboard;
         } else {
             return blankServerProps
-        }
-    } catch (err) {
-        return redirectToLogin
-    }
-}
-
-export const verifyAuthenticatedClient = async (ctx) => {
-    try {
-        const cookies = nookies.get(ctx);
-        await firebaseAdmin.auth().verifyIdToken(cookies.token);
-  
-        return {
-            props: {
-                api_key: process.env.THOT_KEY
-            }
         }
     } catch (err) {
         return redirectToLogin
