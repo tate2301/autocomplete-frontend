@@ -7,8 +7,8 @@ const people = [
       email: 'jane.cooper@example.com',
     },
 ]
-
 const Ccolumns = Object.keys(people[0])
+
 /***
  * @param data Array<any> 
  * @param columns Array<string>  
@@ -16,9 +16,10 @@ const Ccolumns = Object.keys(people[0])
  * The param columns should contain the names of the columns to be displayed and in the correct order.
  * 
 ***/
-export default function Table({data, cols}: {
+export default function SimpleTable({data, cols, ContextComponent}: {
     data?: Array<any>
     cols?: Array<string>
+    ContextComponent?: () => JSX.Element
 }) {
     const columns = cols ?? Ccolumns
     return (
@@ -55,9 +56,7 @@ export default function Table({data, cols}: {
                                                 </td>
                                             ))}
                                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                <a href="#" className="text-yellow-600 hover:text-yellow-900">
-                                                    Edit
-                                                </a>
+                                                <ContextComponent />
                                             </td>
                                         </tr>
                                     )}
