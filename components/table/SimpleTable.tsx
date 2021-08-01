@@ -148,6 +148,8 @@ export default function SimpleTable({data, cols, ContextComponent, rows_per_each
     const [skip, setSkip] = useState<number>(rows_per_each_call > 0 ? rows_per_each_call : 7)
     const [limit, setLimit] = useState<number>(skip)
     const limited_people = people.slice(0,limit)    
+
+    const [search_value, setSearchValue] = useState('')
    
     // to load more items
     const handle_loadMore = (e: any) =>{
@@ -155,12 +157,18 @@ export default function SimpleTable({data, cols, ContextComponent, rows_per_each
         setLimit(limit + skip)
     }
 
+    const setSeatchQuery =(e:any) =>{
+        e.preventDefault()
+    }
+
     return (
         <div className="flex flex-col">
             <Flex color="white" p={4}>
                 <Center w="100%">
-                    <Text color="gray.500" mr={4}><SearchIcon height={16} width={16}/></Text>
-                    <Input placeholder="search name or id or email" variant="unstyled" color="gray.300" />
+                    <form onSubmit={setSeatchQuery}>
+                        <Text onChange={(e:any) => setSearchValue(e.target.value)} color="gray.500" mr={4}><SearchIcon height={16} width={16}/></Text>
+                        <Input placeholder="search name or id or email" variant="unstyled" color="gray.300" />
+                    </form>
                 </Center>
             </Flex>
             <div className="my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
