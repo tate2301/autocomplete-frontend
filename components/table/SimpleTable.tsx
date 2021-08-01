@@ -125,7 +125,7 @@ import { Input } from "@chakra-ui/react"
 import { Text } from "@chakra-ui/react"
 import { Flex, Center } from "@chakra-ui/react"
 import { Button } from "@chakra-ui/react"
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 /***
  * @param data Array<any> 
@@ -134,15 +134,24 @@ import { useState } from 'react'
  * The param columns should contain the names of the columns to be displayed and in the correct order.
  * 
 ***/
-export default function SimpleTable({data, cols, ContextComponent}: {
+export default function SimpleTable({data, cols, ContextComponent, rows_per_each_call}: {
     data?: Array<any>
     cols?: Array<string>
-    ContextComponent?: () => JSX.Element
+    ContextComponent?: () => JSX.Element,
+    rows_per_each_call ?: number
 }) {
-    const columns = cols ?? Ccolumns
 
-    const [limit, setLimit] = useState<number>(7)
-    const limited_people = people.slice(0,limit)
+    const columns = cols ?? Ccolumns
+    const [skip, setSkip] = useState<number>(rows_per_each_call > 0 ? rows_per_each_call : 7)
+    const [limit, setLimit] = useState<number>(skip)
+    const limited_people = people.slice(0,limit)    
+   
+    console.log(skip)
+
+    const handle_loadMore = (e: any) =>{
+        e.preventDefault()
+        setLimit(limit + skip)
+    }
 
     return (
         <div className="flex flex-col">
@@ -195,7 +204,7 @@ export default function SimpleTable({data, cols, ContextComponent}: {
                 </div>
             </div>
                 <div className="flex self-center">
-                    <Button size="md">Load More</Button>
+                    <Button onClick={handle_loadMore} size="md">Load More</Button>
                 </div>
         </div>
     )
