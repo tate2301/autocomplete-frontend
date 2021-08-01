@@ -8,6 +8,7 @@ const people = [
     },
 ]
 const Ccolumns = Object.keys(people[0])
+import {SearchIcon} from '@heroicons/react/outline'
 
 /***
  * @param data Array<any> 
@@ -24,6 +25,9 @@ export default function SimpleTable({data, cols, ContextComponent}: {
     const columns = cols ?? Ccolumns
     return (
         <div className="flex flex-col">
+            <div className="flex flex-col items-start">
+                <SearchIcon height={16} width={16} className="text-gray-300" />
+            </div>
             <div className="my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                     <div className="shadow overflow-hidden border-b">
