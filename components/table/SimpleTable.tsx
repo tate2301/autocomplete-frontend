@@ -6,12 +6,126 @@ const people = [
       role: 'Admin',
       email: 'jane.cooper@example.com',
     },
+    {
+        name: 'Jane Cooper',
+        title: 'Regional Paradigm Technician',
+        department: 'Optimization',
+        role: 'Admin',
+        email: 'jane.cooper@example.com',
+      },
+      {
+        name: 'Jane Cooper',
+        title: 'Regional Paradigm Technician',
+        department: 'Optimization',
+        role: 'Admin',
+        email: 'jane.cooper@example.com',
+      },
+      {
+        name: 'Jane Cooper',
+        title: 'Regional Paradigm Technician',
+        department: 'Optimization',
+        role: 'Admin',
+        email: 'jane.cooper@example.com',
+      },
+      {
+        name: 'Jane Cooper',
+        title: 'Regional Paradigm Technician',
+        department: 'Optimization',
+        role: 'Admin',
+        email: 'jane.cooper@example.com',
+      },
+      {
+        name: 'Jane Cooper',
+        title: 'Regional Paradigm Technician',
+        department: 'Optimization',
+        role: 'Admin',
+        email: 'jane.cooper@example.com',
+      },
+      {
+        name: 'Jane Cooper',
+        title: 'Regional Paradigm Technician',
+        department: 'Optimization',
+        role: 'Admin',
+        email: 'jane.cooper@example.com',
+      },
+      {
+        name: 'Jane Cooper',
+        title: 'Regional Paradigm Technician',
+        department: 'Optimization',
+        role: 'Admin',
+        email: 'jane.cooper@example.com',
+      },
+      {
+        name: 'Jane Cooper',
+        title: 'Regional Paradigm Technician',
+        department: 'Optimization',
+        role: 'Admin',
+        email: 'jane.cooper@example.com',
+      },
+      {
+        name: 'Jane Cooper',
+        title: 'Regional Paradigm Technician',
+        department: 'Optimization',
+        role: 'Admin',
+        email: 'jane.cooper@example.com',
+      },
+      {
+        name: 'Jane Cooper',
+        title: 'Regional Paradigm Technician',
+        department: 'Optimization',
+        role: 'Admin',
+        email: 'jane.cooper@example.com',
+      },
+      {
+        name: 'Jane Cooper',
+        title: 'Regional Paradigm Technician',
+        department: 'Optimization',
+        role: 'Admin',
+        email: 'jane.cooper@example.com',
+      },
+      {
+        name: 'Jane Cooper',
+        title: 'Regional Paradigm Technician',
+        department: 'Optimization',
+        role: 'Admin',
+        email: 'jane.cooper@example.com',
+      },
+      {
+        name: 'Jane Cooper',
+        title: 'Regional Paradigm Technician',
+        department: 'Optimization',
+        role: 'Admin',
+        email: 'jane.cooper@example.com',
+      },
+      {
+        name: 'Jane Cooper',
+        title: 'Regional Paradigm Technician',
+        department: 'Optimization',
+        role: 'Admin',
+        email: 'jane.cooper@example.com',
+      },
+      {
+        name: 'Jane Cooper',
+        title: 'Regional Paradigm Technician',
+        department: 'Optimization',
+        role: 'Admin',
+        email: 'jane.cooper@example.com',
+      },
+      {
+        name: 'Jane Cooper',
+        title: 'Regional Paradigm Technician',
+        department: 'Optimization',
+        role: 'Admin',
+        email: 'jane.cooper@example.com',
+      },
 ]
 const Ccolumns = Object.keys(people[0])
 import { SearchIcon } from '@heroicons/react/outline'
 import { Input } from "@chakra-ui/react"
 import { Text } from "@chakra-ui/react"
 import { Flex, Center } from "@chakra-ui/react"
+import { Button } from "@chakra-ui/react"
+import { useState } from 'react'
 
 /***
  * @param data Array<any> 
@@ -26,6 +140,9 @@ export default function SimpleTable({data, cols, ContextComponent}: {
     ContextComponent?: () => JSX.Element
 }) {
     const columns = cols ?? Ccolumns
+
+    const [limit, setLimit] = useState<number>(0)
+
     return (
         <div className="flex flex-col">
             <Flex color="white" p={4}>
@@ -76,6 +193,9 @@ export default function SimpleTable({data, cols, ContextComponent}: {
                     </div>
                 </div>
             </div>
+                <div className="flex self-center">
+                    <Button size="md">Load More</Button>
+                </div>
         </div>
     )
 }
