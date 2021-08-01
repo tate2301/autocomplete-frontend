@@ -27,7 +27,7 @@ export const useAuth = () => {
         auth.signInWithEmailAndPassword(email, password)
             .then(value => {
                 setAuthSuccess(true)
-                window.location.href = "/app"
+                window.location.href = "/"
                 setAuthLoading(null)
             })
             .catch(err => {
@@ -37,65 +37,6 @@ export const useAuth = () => {
             })
     }
 
-    const signUpWithEmail = (e) => {
-        e.preventDefault()
-        const email = e.target.email.value
-        const password = e.target.password.value
-        const fullname = e.target.fullname.value
-        setAuthLoading(true)
-        setAuthSuccess(false)
-        setAuthError(null)
-
-        auth.createUserWithEmailAndPassword(email, password)
-            .then(async value => {
-                await value.user.updateProfile({
-                    displayName: fullname
-                })
-                setAuthSuccess(true)
-                await value.user.sendEmailVerification()
-                return window.location.href = "/app"
-            })
-            .catch(err => {
-                setAuthSuccess(false)
-                setAuthError(err)
-                setAuthLoading(false)
-            })
-    }
-
-    const signInWithGoogle = () => {
-        let provider = new authBase.GoogleAuthProvider()
-        provider.addScope('https://www.googleapis.com/auth/contacts.readonly')
-        setAuthError(null)
-        setAuthLoading(true)
-        setAuthSuccess(false)
-
-        auth.signInWithPopup(provider)
-            .then((result) => {
-                setAuthError(null)
-                window.location.href = "/app"
-                setAuthSuccess(true)
-            }).catch((error) => {
-                setAuthError(error)
-                setAuthLoading(false)
-                setAuthSuccess(false)
-            })
-    }
-
-    const resetPassword = (e) => {
-        e.preventDefault()
-        const email = e.target.email.value
-        auth.sendPasswordResetEmail(email)
-        .then((result) => {
-            setAuthError(null)
-            setAuthLoading(false)
-            setAuthSuccess(true)
-        }).catch((error) => {
-            setAuthError(error)
-            setAuthLoading(false)
-            setAuthSuccess(false)
-        })
-    }
-
     const logout = () => {
         auth.signOut()
             .then(() => {
@@ -103,7 +44,7 @@ export const useAuth = () => {
             })
     }
 
-    return { signInWithEmail, signInWithGoogle, signUpWithEmail, resetPassword, logout, sendEmailVerification, authSuccess, authLoading, authError }
+    return { signInWithEmail, logout, sendEmailVerification, authSuccess, authLoading, authError }
 }
 
 export const AuthContext = createContext({user: null})
